@@ -1,0 +1,11 @@
+# Ignorar os arquivos originais não minificados
+style.css
+script.js
+
+# Ignorar o README ou outros arquivos desnecessários no container, se existirem
+README.md
+
+# Ignorar arquivos do sistema (importante no Mac)
+.DS_Store
+.git/
+.gitignore

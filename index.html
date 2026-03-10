@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualizador de Cadastro - Pazolini</title>
+    <link rel="stylesheet" href="style.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="ambient-light"></div>
+
+    <div id="login-overlay" class="login-overlay">
+        <div class="login-modal">
+            <h2>Acesso Restrito</h2>
+            <p>Por favor, identifique-se para continuar.</p>
+
+            <div class="input-group">
+                <input type="text" id="username" placeholder="Usuário" autocomplete="off">
+            </div>
+            <div class="input-group">
+                <input type="password" id="password" placeholder="Senha" autocomplete="off">
+            </div>
+
+            <button onclick="tentarLogin()">Entrar no Painel</button>
+            <div id="login-error" class="error-msg"></div>
+        </div>
+    </div>
+
+    <div id="main-app">
+        <div class="header">
+            <h1>Cadastros Pazolini</h1>
+            <p id="contador">Sincronizando dados...</p>
+        </div>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Data</th>
+                        <th>Nome</th>
+                        <th>Cidade</th>
+                        <th>Área</th>
+                        <th>Telefone</th>
+                        <th>Ideia</th>
+                    </tr>
+                </thead>
+                <tbody id="tabela-corpo">
+                    <tr>
+                        <td colspan="7" class="loading">Buscando dados no n8n...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script src="script.min.js"></script>
+</body>
+
+</html>
