@@ -5,7 +5,7 @@
 // Hash de "admin"
 const USER_HASH = "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918";
 // Hash de "Pazolini2026"
-const PASS_HASH = "1f7a0b38c035677e4fbced4b5bc26d0bb5ed9dcbf67eb2e3c04870f72aeed42e";
+const PASS_HASH = "429c46d3ad5cb0aa85d72337119ebc5c0adebcc441feac71f4d29cb884562cb0";
 
 // Função para encriptar os inputs do usuário em SHA-256 no navegador via CryptoJS
 function sha256(message) {
@@ -20,6 +20,7 @@ document.getElementById('password').addEventListener('keypress', function (e) {
 document.getElementById('username').addEventListener('keypress', function (e) {
     if (e.key === 'Enter') document.getElementById('password').focus();
 });
+document.getElementById('login-button').addEventListener('click', tentarLogin);
 
 function tentarLogin() {
     const user = document.getElementById('username').value.trim();
