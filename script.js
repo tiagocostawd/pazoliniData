@@ -33,12 +33,13 @@ function tentarLogin() {
     }
 
     try {
-        // Geramos o hash "criptografado" para ver se bate e é idêntico
         const inputUserHash = sha256(user);
         const inputPassHash = sha256(pass);
 
+        console.log("Checking User:", user, "-> HASH:", inputUserHash, "EXPECTED:", USER_HASH, "MATCH:", inputUserHash === USER_HASH);
+        console.log("Checking Pass:", pass, "-> HASH:", inputPassHash, "EXPECTED:", PASS_HASH, "MATCH:", inputPassHash === PASS_HASH);
+
         if (inputUserHash === USER_HASH && inputPassHash === PASS_HASH) {
-            // Remove o aviso de erro, se houver
             erroEl.textContent = "";
 
             // Faz a transição de saída do Login (Animação suave de fade out)
