@@ -93,12 +93,15 @@ async function carregarDados() {
 
     } catch (erro) {
         console.error("Erro na requisição:", erro);
-        document.getElementById('tabela-corpo').innerHTML = `
-            <tr><td colspan="7" class="error">
-                Erro ao carregar dados do n8n.<br>
-                Verifique se a URL está correta e se a opção CORS (Respond CORS) está ativada no Webhook!
-            </td></tr>
-        `;
+        const errorTr = document.createElement('tr');
+        const errorTd = document.createElement('td');
+        errorTd.colSpan = 7;
+        errorTd.className = 'error';
+        errorTd.innerHTML = 'Erro ao carregar dados do n8n.<br>Verifique se a URL está correta e se a opção CORS (Respond CORS) está ativada no Webhook!';
+        const tbodyError = document.getElementById('tabela-corpo');
+        tbodyError.innerHTML = '';
+        tbodyError.appendChild(errorTr);
+        errorTr.appendChild(errorTd);
         document.getElementById('contador').textContent = "Falha na sincronização.";
     }
 }
@@ -136,15 +139,39 @@ function renderizarTabela(dados) {
     dados.forEach(item => {
         const tr = document.createElement('tr');
 
-        tr.innerHTML = `
-            <td><span class="id-badge">#${item.id || '-'}</span></td>
-            <td style="color: #64748B;">${formatarDataHora(item.createdAt)}</td>
-            <td style="color: #0F172A; font-weight: 600;">${item.Nome || '-'}</td>
-            <td>${item.Cidade || '-'}</td>
-            <td>${item.Area || '-'}</td>
-            <td>${formatarTelefone(item.Telefone)}</td>
-            <td class="ideia-cell" title="${item.Ideia || ''}">${item.Ideia || '-'}</td>
-        `;
+        const idTd = document.createElement('td');
+        idTd.innerHTML = `<span class="id-badge">#${item.id || '-'}</span>`;
+
+        const dataTd = document.createElement('td');
+        dataTd.style.color = '#64748B';
+        dataTd.textContent = formatarDataHora(item.createdAt);
+
+        const nomeTd = document.createElement('td');
+        nomeTd.style.color = '#0F172A';
+        nomeTd.style.fontWeight = '600';
+        nomeTd.textContent = item.Nome || '-';
+
+        const cidadeTd = document.createElement('td');
+        cidadeTd.textContent = item.Cidade || '-';
+
+        const areaTd = document.createElement('td');
+        areaTd.textContent = item.Area || '-';
+
+        const telefoneTd = document.createElement('td');
+        telefoneTd.textContent = formatarTelefone(item.Telefone);
+
+        const ideiaTd = document.createElement('td');
+        ideiaTd.className = 'ideia-cell';
+        ideiaTd.title = item.Ideia || '';
+        ideiaTd.textContent = item.Ideia || '-';
+
+        tr.appendChild(idTd);
+        tr.appendChild(dataTd);
+        tr.appendChild(nomeTd);
+        tr.appendChild(cidadeTd);
+        tr.appendChild(areaTd);
+        tr.appendChild(telefoneTd);
+        tr.appendChild(ideiaTd);
         tbody.appendChild(tr);
     });
 }
